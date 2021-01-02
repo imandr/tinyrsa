@@ -4,10 +4,10 @@ Minimalistic but useful implementation of public key encryption suite
 The package includes a Pyhton library and a command line script, 
 which implements basic public key encryption functions:
 
-    * Key pair generation 
-    * Public key extraction
-    * File encryption and decryption
-    * Digital signature generation and verification
+* Key pair generation 
+* Public key extraction
+* File encryption and decryption
+* Digital signature generation and verification
     
 Command line script usage
 -------------------------
