@@ -14,12 +14,12 @@ Command line script usage
 
 .. code-block:: shell
 
-$ tinyrsa generate [-s <key size, bits>] -k <keypair file>
-          public -k <keypair file> [-o <public key file>]
-          encrypt -k <keypair or public key file> <input file> <output file>
-          decrypt -k <keypair or public key file> <input file> <output file>
-          sign -k <keypair file> <input file> (<signature file>|-)
-          verify -k <keypair or public key file> <input file> <signature file>
+    $ tinyrsa generate [-s <key size, bits>] -k <keypair file>
+              public -k <keypair file> [-o <public key file>]
+              encrypt -k <keypair or public key file> <input file> <output file>
+              decrypt -k <keypair or public key file> <input file> <output file>
+              sign -k <keypair file> <input file> (<signature file>|-)
+              verify -k <keypair or public key file> <input file> <signature file>
 
 
 Test
