@@ -1,16 +1,16 @@
 from tinyrsa import Key, KeyPair, RSA
 from tinyrsa.aes import AES
 
-import sys, getopt
+import sys, getopt, os
 
 
 Usage = """
-python rsa.py generate [-s <key size, bits>] -k <keypair file>
-              public -k <keypair file> [-o <public key file>]
-              encrypt -k <keypair or public key file> <input file> <output file>
-              decrypt -k <keypair or public key file> <input file> <output file>
-              sign -k <keypair file> <input file> (<signature file>|-)
-              verify -k <keypair or public key file> <input file> <signature file>
+tinyrsa   generate [-s <key size, bits>] -k <keypair file>
+          public -k <keypair file> [-o <public key file>]
+          encrypt -k <keypair or public key file> <input file> <output file>
+          decrypt -k <keypair or public key file> <input file> <output file>
+          sign -k <keypair file> <input file> (<signature file>|-)
+          verify -k <keypair or public key file> <input file> <signature file>
 """
 
 def do_generate(argv):
@@ -18,7 +18,8 @@ def do_generate(argv):
     opts = dict(opts)
     size = int(opts.get("-s", 512))
     kp = KeyPair.generate(size)
-    open(opts["-k"], "w").write(kp.as_json())
+    fd = os.open(opts["-k"], os.O_WRONLY | os.O_CREAT, mode=0o700)
+    os.fdopen(fd, "w").write(kp.as_json())
     
 def do_public(argv):
     opts, args = getopt.getopt(argv, "k:o:")

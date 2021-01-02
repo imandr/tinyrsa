@@ -11,6 +11,10 @@ tinyrsa generate -k bob
 cat bob
 
 echo
+echo Private keys are kept secret
+ls -l alice bob
+
+echo
 echo Extracting public keys for Alice and Bob ...
 tinyrsa public -k alice -o alice.public
 tinyrsa public -k bob -o bob.public
@@ -19,6 +23,7 @@ cat bob.public
 
 echo
 echo Alice and Bob publish their public keys on the Internet ...
+ls -l alice.public bob.public
 
 echo
 echo Alice encrypts story for Bob ...
@@ -34,9 +39,9 @@ echo
 echo Alice sends the encrypted story and the signature to Bob somehow ...
 
 echo
-echo Bob decrypts story ...
+echo Bob decrypts the story ...
 tinyrsa decrypt -k bob encrypted decrypted
-ls -l story encrypted decrypted
+ls -l encrypted decrypted
 
 echo
 echo "Bob verifies Alice's signarute ..."
