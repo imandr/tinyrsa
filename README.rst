@@ -12,7 +12,7 @@ which implements basic public key encryption functions:
 Command line script usage
 -------------------------
 
-.. code-block:: shell
+::
 
     $ tinyrsa generate [-s <key size, bits>] -k <keypair file>
               public -k <keypair file> [-o <public key file>]
