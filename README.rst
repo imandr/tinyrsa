@@ -8,6 +8,18 @@ which implements basic public key encryption functions:
 * Public key extraction
 * File encryption and decryption
 * Digital signature generation and verification
+
+Installation
+------------
+
+After cloning the repository, run the setup.py script:
+
+.. code-block:: shell
+
+    $ git clone https://github.com/imandr/tinyrsa.git
+    $ cd tinyrsa
+    $ python setup.py install --user
+    
     
 Command line script usage
 -------------------------
