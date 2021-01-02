@@ -1,34 +1,52 @@
 #!/bin/bash
 
 echo
-echo Generating key pair ...
-tinyrsa generate -k keys
-cat keys
+echo Generating key pair for Alice ...
+tinyrsa generate -k alice
+cat alice
 
 echo
-echo Extracting public key ...
-tinyrsa public -k keys -o public
-cat public
+echo Generating key pair for Bob ...
+tinyrsa generate -k bob
+cat bob
 
 echo
-echo Encryping story ...
-tinyrsa encrypt -k public story encrypted
+echo Extracting public keys for Alice and Bob ...
+tinyrsa public -k alice -o alice.public
+tinyrsa public -k bob -o bob.public
+cat alice.public
+cat bob.public
+
+echo
+echo Alice and Bob publish their public keys on the Internet ...
+
+echo
+echo Alice encrypts story for Bob ...
+tinyrsa encrypt -k bob.public story encrypted
 ls -l story encrypted
 
 echo
-echo Decrypting story ...
-tinyrsa decrypt -k keys encrypted decrypted
-ls -l story encrypted decrypted
-
-echo
-echo Comparing ...
-diff story decrypted
-
-echo
-echo Signing story ...
-tinyrsa sign -k keys story signature
+echo Alice signs story ...
+tinyrsa sign -k alice story signature
 cat signature
 
 echo
-echo Verifying signarute
-tinyrsa verify -k public story signature
+echo Alice sends the encrypted story and the signature to Bob somehow ...
+
+echo
+echo Bob decrypts story ...
+tinyrsa decrypt -k bob encrypted decrypted
+ls -l story encrypted decrypted
+
+echo
+echo "Bob verifies Alice's signarute ..."
+tinyrsa verify -k alice.public decrypted signature
+
+echo
+echo "Bob reads the story ..."
+
+cat story
+
+
+
+
